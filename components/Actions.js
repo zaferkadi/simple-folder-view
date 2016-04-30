@@ -6,9 +6,8 @@ class Actions extends React.Component {
         this.displayName = 'Actions';
         this.state = {isChecked: false, isDisabled: 'disabled'};
     }
-    componentWillReceiveProps(newProps) {
-    	console.log(newProps.isDisabled);
-    	console.log('xx');
+    componentWillReceiveProps(newProps) {    	
+    	
     	if (newProps.isChecked != this.state.isChecked) {
     		this.setState({
     			isChecked: newProps.isChecked 
@@ -40,12 +39,13 @@ class Actions extends React.Component {
         return <tr>
         	<th><input type="checkbox" checked={ this.state.isChecked } onChange={(e) => this.onChange(e)}/></th>
         	<th>
-        		<button disabled={this.state.isDisabled}>Rename</button>
+        		<button type="button" disabled={this.state.isDisabled} onClick={ (e) => this.props.onRename(e)}>Rename</button>
         		<button disabled={this.state.isDisabled}>Delete</button>
-        		<button>New Folder</button>
+        		<button onClick={(e)=>this.props.onCreate(e)}>New Folder</button>
         	</th>
         </tr>;
     }
 }
+
 
 export default Actions;

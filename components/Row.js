@@ -27,7 +27,8 @@ class Row extends React.Component {
     
     render() {
     	//console.log(this.state.checked);
-    	
+    	//var fields = this.props.showEdit?<input type="text" value={this.props.title}/>:<span>{this.props.title}</span>;
+    	//console.log(this.props.showEdit);
         return <tr>
         	<td>
         	<input type="checkbox" 
@@ -36,7 +37,7 @@ class Row extends React.Component {
         		/>
         	</td>
         	<td>
-			<span>{this.props.title}</span>
+        	<span>{this.props.title}</span>
         	</td>
         </tr>;
     }
