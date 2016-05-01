@@ -4,48 +4,47 @@ class Actions extends React.Component {
     constructor(props) {
         super(props);
         this.displayName = 'Actions';
-        this.state = {isChecked: false, isDisabled: 'disabled'};
+        this.state = { isChecked: false, isRenameDisabled: 'disabled', isCreateDisabled: 'disabled' };
     }
-    componentWillReceiveProps(newProps) {    	
-    	
-    	if (newProps.isChecked != this.state.isChecked) {
-    		this.setState({
-    			isChecked: newProps.isChecked 
-  			});
-    	}
 
-    	if(newProps.isDisabled != this.state.isDisabled) {
-    		this.setState({
-    			isDisabled: newProps.isDisabled 
-  			});	
-    	}
-  		/*
-  		this.setState({
-    		isDisabled: nextProps.isDisabled 
-  		});
-  		*/
-	}
- 
+    componentDidMount() {
+            this.setState({ isCreateDisabled: this.props.isCreateDisabled });
+    }
+
+    componentWillReceiveProps(newProps) {
+
+        if (newProps.isChecked != this.state.isChecked) {
+            this.setState({
+                isChecked: newProps.isChecked
+            });
+        }
+
+        if (newProps.isRenameDisabled != this.state.isRenameDisabled) {
+            this.setState({
+                isRenameDisabled: newProps.isRenameDisabled
+            });
+        }
+
+        if (newProps.isCreateDisabled != this.state.isCreateDisabled) {
+            this.setState({
+                isCreateDisabled: newProps.isCreateDisabled
+            });
+        }
+    }
     onChange(e) {
 
-    	this.setState({isChecked: e.target.checked});
-    	// delegate to parent 
-    	this.props.onToggle(e);
+        this.setState({ isChecked: e.target.checked });
+        // delegate to parent
+        this.props.onToggle(e);
     }
-
     render() {
-    	//this.setState({isDisabled: this.props.isDisabled});
-    	//console.log(this.props.isDisabled);
-        return <tr>
-        	<th><input type="checkbox" checked={ this.state.isChecked } onChange={(e) => this.onChange(e)}/></th>
-        	<th>
-        		<button type="button" disabled={this.state.isDisabled} onClick={ (e) => this.props.onRename(e)}>Rename</button>
-        		<button disabled={this.state.isDisabled}>Delete</button>
-        		<button onClick={(e)=>this.props.onCreate(e)}>New Folder</button>
-        	</th>
-        </tr>;
+        return (<tr>
+        	<th><input type="checkbox" checked={this.state.isChecked} onChange={(e)=>this.onChange(e)}/></th>
+        	<th><button className='btn btn-primary' disabled= {this.state.isRenameDisabled} onClick={(e)=>this.props.onRename(e)}>Rename</button>
+        	<button className='btn btn-primary' disabled= {this.state.isRenameDisabled} onClick={(e)=>this.props.onDelete(e)}>Delete</button>
+        	<button className='btn btn-primary' disabled= {this.state.isCreateDisabled} onClick={(e)=>this.props.onCreate(e)}>Create</button></th>
+        	</tr>);
     }
 }
-
 
 export default Actions;

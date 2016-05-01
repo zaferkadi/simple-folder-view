@@ -13,24 +13,13 @@ import Entry from './model.js';
 		constructor(options) {
 			super(options);
 			this.model = Entry;
-			this.comparator= 'order';
 		}
 
-		checked() {
-			return this.where({checked: true});
+		comparator(itemA, itemB) {
+			if (itemA.cid > itemB.cid) return -1;
+			if (itemA.cid < itemB.cid) return 1;
+			return 0;
 		}
-
-		remaining() {
-			return this.where({checked: false});
-		}
-
-		// We keep the Entrys in sequential order, despite being saved by unordered
-		// GUID in the database. This generates the next order number for new items.
-		nextOrder() {
-			return this.length ? this.last().get('order') + 1 : 1;
-		}
-
-		
 	};
 
 export default  Entries;

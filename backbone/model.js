@@ -6,10 +6,16 @@ import {Backbone, Model} from 'backbone';
 class Entry extends Model {
 	defaults() {
 		return {
-			title: '',
-			checked: false
+			title: ''
 	//		type: EntryType.file
 		}
+	}
+	constructor(props){
+		super(props);
+		this.state = {
+			selected: false,
+			editMode: false
+		};
 	}
 }
 
