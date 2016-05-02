@@ -1,5 +1,10 @@
 # simple folder view
 
+
+Written with es6 + reactjs + backbone 
+
+Built tools: Gulp
+
 -npm install -g gulp browserify
 
 -npm install // for node_modules
