@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors"
+    "start": "gulp",
+    "start2": "webpack-dev-server --progress --colors"
   },
   "repository": {
     "type": "git",
